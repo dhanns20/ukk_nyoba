@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class Siswa extends Model
+{
+    protected $fillable = [
+        'nama',
+        'kelas',
+        'nis',
+        'gender',
+        'alamat',
+        'kontak',
+        'email',
+        'status_pkl',
+    ];
+    //
+}
