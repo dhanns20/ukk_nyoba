@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\TextColumn;
+use Carbon\Carbon;
 
 class PklResource extends Resource
 {
@@ -38,10 +39,16 @@ class PklResource extends Resource
                     ->label('Guru Pembimbing')
                     ->relationship('guru', 'nama')
                     ->required(),
+
                 DatePicker::make('mulai')
-                    ->required(),
+                    ->label('Tanggal Mulai')
+                    ->required()
+                    ->reactive(), // penting untuk trigger perubahan nilai
+                
                 DatePicker::make('selesai')
-                    ->required(),
+                    ->label('Tanggal Selesai')
+                    ->required()
+                    ->minDate(fn (callable $get) => $get('mulai')), // tidak bisa lebih awal dari 'mulai'
                 //
             ]);
     }
@@ -61,8 +68,8 @@ class PklResource extends Resource
                     ->label('Guru Pembimbing'),
                 TextColumn::make('mulai')
                     ->date(),
-                TextColumn::make('selesai')
-                    ->date(),
+                
+                
                 //
             ])
             ->filters([
