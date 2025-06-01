@@ -34,6 +34,13 @@ class SiswaResource extends Resource
                     ->label('Nama Siswa')
                     ->required(),
 
+                Select::make('gender')
+                    ->options([
+                        'L' => 'Laki-laki',
+                        'P' => 'Perempuan',
+                    ])
+                    ->required(),
+
                 TextInput::make('email')
                     ->label('Email')
                     ->email()
@@ -66,6 +73,7 @@ class SiswaResource extends Resource
             ->columns([
                 TextColumn::make('nis')->label('NIS'),
                 TextColumn::make('nama')->label('Nama'),
+                TextColumn::make('gender')->label('Gender'),
                 TextColumn::make('email')->label('Email'),
                 TextColumn::make('kelas')->label('kelas'),
                 TextColumn::make('alamat')->label('alamat'),
