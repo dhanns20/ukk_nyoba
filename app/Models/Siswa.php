@@ -17,5 +17,15 @@ class Siswa extends Model
         'email',
         'status_pkl',
     ];
-    //
+    
+    public function pkl()
+    {
+        return $this->hasMany(Pkl::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'email', 'email');
+    }
+
 }
